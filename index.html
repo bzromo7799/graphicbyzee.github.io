@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zeshan Ahmad Graphics</title>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
+}
+
+
+body{
+    background:#000;
+    color:#fff;
+}
+
+
+header{
+    position:fixed;
+    width:100%;
+    padding:20px 10%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(0,0,0,0.8);
+    backdrop-filter:blur(10px);
+    z-index:1000;
+}
+
+
+header h1{
+    color:#FFC107;
+    font-size:24px;
+}
+
+
+nav a{
+    color:#fff;
+    text-decoration:none;
+    margin-left:20px;
+    transition:0.3s;
+}
+
+
+nav a:hover{
+    color:#FFC107;
+}
+
+
+section{
+    padding:100px 10%;
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s;
+}
+
+
+section.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+
+.hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+
+.hero img{
+    width:200px;
+    margin-bottom:20px;
+    animation:float 3s ease-in-out infinite;
+}
+
+
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-15px);}
+}
+
+
+.hero h2{
+    font-size:45px;
+}
+
+
+.hero span{
+    color:#FFC107;
+}
+
+
+.btn{
+    margin-top:20px;
+    padding:12px 30px;
+    background:#FFC107;
+    color:#000;
+    text-decoration:none;
+    font-weight:600;
+    border-radius:30px;
+    transition:0.3s;
+}
+
+
+.btn:hover{
+    background:#fff;
+}
+
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+    font-size:35px;
+    color:#FFC107;
+}
+
+
+.services, .portfolio{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+
+.card{
+    background:#111;
+    padding:30px;
+    border-radius:15px;
+    transition:0.4s;
+}
+
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 20px #FFC10750;
+}
+
+
+.portfolio img{
+    width:100%;
+    border-radius:10px;
+}
+
+
+.contact-info{
+    text-align:center;
+    font-size:18px;
+}
+
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:#111;
+}
+</style>
+</head>
+<body>
+
+
+<header>
+    <h1>Zee Graphics</h1>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+
+<section class="hero">
+    <img src="logo.png" alt="ZA Logo">
+    <h2>Zeshan Ahmad</h2>
+    <p><span>Graphic Designer</span> | Brand Identity Specialist</p>
+    <a href="#portfolio" class="btn">View My Work</a>
+</section>
+
+
+<section id="about">
+    <h2 class="section-title">About Me</h2>
+    <p style="max-width:700px;margin:auto;text-align:center;">
+        I design bold modern and conversion focused visuals for brands & creators.
+        My goal is to create designs that don't just look good — they sell.
+    </p>
+</section>
+
+
+<section id="services">
+    <h2 class="section-title">Services</h2>
+    <div class="services">
+        <div class="card">Logo Design</div>
+        <div class="card">Brand Identity</div>
+        <div class="card">Social Media Design</div>
+        <div class="card">YouTube Thumbnails</div>
+        <div class="card">Posters & Ads</div>
+    </div>
+</section>
+
+
+<section id="portfolio">
+    <h2 class="section-title">Portfolio</h2>
+    <div class="portfolio" id="portfolioContainer">
+        <!-- Portfolio images will be added here automatically -->
+    </div>
+</section>
+
+
+<section id="contact">
+    <h2 class="section-title">Contact Me</h2>
+    <div class="contact-info">
+        📩 Email: graphicbyzee@gmail.com <br><br>
+        📷 Instagram: @graphicbyzeeshan.ad
+    </div>
+</section>
+
+
+<footer>
+    © 2026 Zeshan Ahmad Graphics | All Rights Reserved
+</footer>
+
+
+<script>
+// Scroll animation
+const sections = document.querySelectorAll("section");
+window.addEventListener("scroll", () => {
+    sections.forEach(sec => {
+        const top = window.scrollY;
+        const offset = sec.offsetTop - 400;
+        const height = sec.offsetHeight;
+        if(top >= offset && top < offset + height){
+            sec.classList.add("active");
+        }
+    });
+});
+
+
+// Portfolio images array
+const portfolioImages = [
+    "work1.jpg",
+    "work2.jpg",
+    "work3.jpg",
+    "work4.jpg"
+    // Add new image filenames here, e.g. "work5.jpg", "project1.png"
+];
+
+
+const portfolioContainer = document.getElementById("portfolioContainer");
+
+
+// Dynamically create portfolio cards
+portfolioImages.forEach(img => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+
+    const image = document.createElement("img");
+    image.src = img;
+    card.appendChild(image);
+
+
+    portfolioContainer.appendChild(card);
+});
+</script>
+
+
+</body>
+</html>
